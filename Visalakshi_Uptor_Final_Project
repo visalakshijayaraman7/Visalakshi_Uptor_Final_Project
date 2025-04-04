@@ -1,0 +1,92 @@
+Fake News Detection Report 
+
+1. Introduction:
+
+In today's digital age, misinformation spreads rapidly, especially on social media platforms
+like Instagram. As a mother of two children, I frequently encounter food and health-related
+news that can be misleading or inaccurate, making it difficult to distinguish fact from
+fiction. This personal experience inspired me to explore artificial intelligence as a tool
+for detecting fake news. By leveraging machine learning techniques, this project aims to
+develop a reliable method for identifying and classifying fake news, utilizing both
+supervised and unsupervised learning algorithms.
+
+2. Dataset Description
+The dataset used consists of two separate csv files: list of fake news and list of true news.
+The data sets contains textual features namely title, subject, text and date.
+
+3. Data Preprocessing
+After checking if the data sets are read properly, the following preprocessing steps were
+done to prepare the data for analysis.
+
+Step 1: 
+Data balancing: Since the fake news dataset had more samples than the true news dataset,
+random rows were dropped from the fake news dataset to ensure balance. This was achieved using
+the sample() function in Pandas, maintaining a consistent dataset size for fair model training.
+
+Step 2:
+Label Encoding: To convert categorical data into numerical data, I labeled fake news articles
+as 0 and true news articles as 1.
+
+Step 3:
+Merging of two data sets: For easy data analysis, i merged two datasets into one data set
+using pandas function concat - pd.concat().  It is used to concatenate (merge) two or more
+data sets either row-wise (axis=0) or column-wise (axis=1).
+
+Step 4:
+Dropped irrevelenat columns like title, subject and date using drop() function, as it is
+not needed for analysis.
+
+Step5: 
+Findng null values: Checked for null values using isnull().sum().sum() syntax and found null
+value count to be zero.
+
+Step 6: 
+A random shuffeling of the combine data was made to avoid bias in the model because the order
+of the data could influence the training process. the syntax used for random sampling is df.sample(frac=1)
+
+Step 7:
+CounVectorization: To process the raw text, and convert text in news articles to numeric
+CountVectorization was used.  It transforms the text data into a bag-of-words (BoW) representation, where each unique word in the dataset is assigned a unique integer, and the document is represented as a vector containing word counts.
+
+Step 8:
+test_train_split: The data was divided in to training and testing sets in 80:20 ratio.
+
+4. Model Implementation
+
+4.a.Supervised Learning Model: 
+Under supervised learning model, Logistic Regression was used as it is best suited for binary
+classification problems like yes or no, true or false etc. The accuracy score and
+classification report were generated to evaluate performance. The model achieved an accuracy
+of 1.0, demonstrating its effectiveness in correctly classifying fake and true news. The
+classification report provided detailed insights into precision, recall, and F1-score for
+both categories, confirming the model’s robustness.
+
+Unsupervised Learning (Clustering)
+
+4.b. K-Means Clustering:
+To identify pattern and natural groupings within the dataset, K-Means clustering was used.
+but befor applying the model, few data preprocessing was done.
+
+Step1:
+Merging datasets again to restore the dropped column: Certain columns like title, subject were
+dropped earlier for logistic regression model. these features were restored for clustering
+purpose using concat() function
+
+Step2:
+Using PCA to reduce dimentionality: The fake news dedection data sets contains
+high-dimentional textual features. This makes visualisation difficult. Hence, PCA was
+used to reduce high-dimensional data into low-dimensional data. PCA reduced it to two
+principal components.
+ 
+A cluster distibution analysis was done to understand the number of clusters assigned to
+each cluster using value_count () function. Visualisation of clusters using PCA showed a
+scatter plot of PCA componets were created to assess if the clusters are well separated or
+overlapping
+
+6. Results and Evaluation
+
+The best-performing model is supervised model - Logistic Regression, achieving an accuracy
+of 1.
+Clustering techniques provided insights into the underlying structure of the dataset but were
+not as effective for classification.
+
